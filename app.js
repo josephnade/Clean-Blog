@@ -33,7 +33,6 @@ app.get("/", async(req, res) => {
     });
 });
 
-
 app.get("/about", (req, res) => {
     res.render("about.ejs");
 });
@@ -45,7 +44,14 @@ app.get("/add_post", (req, res) => {
 app.get("/post", (req, res) => {
     res.render("post.ejs");
 });
-app.post("/blogs", async(req, res) => {
+app.get("/post/:id", async(req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.render("post.ejs", {
+        post: post,
+    });
+});
+
+app.post("/posts", async(req, res) => {
     await Post.create(req.body);
     res.redirect("/");
 });
