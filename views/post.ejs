@@ -36,7 +36,18 @@
             </article>
 
             <hr>
-
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Post Başlığı</h2>
+                        <p>Post İçeriği</p>
+                        <!-- Update Post Button -->
+                        <a href="/post/edit/<%= post._id %>" class="btn btn-primary" id="updatePostBtn">Update Post</a>
+                        <!-- Delete Post Button -->
+                        <a href="/post/<%= post._id %>?_method=DELETE" class="btn btn-danger" id="deletePostBtn" onclick="confirm('Are you sure')">Delete Post</a>
+                    </div>
+                </div>
+            </div>
             <!-- Footer -->
             <%- include('partials/_footer.ejs') -%>
 

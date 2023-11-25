@@ -1,60 +1,30 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const Post = require("./models/Post");
-
+var methodOverride = require('method-override')
+const dbController = require("./controllers/db_controller");
+const page_router = require("./routers/page_router");
+const post_router = require("./routers/post_router");
 //CONSTANTS
 const app = express();
 const port = 3000;
 
-async function connectDB() {
-    try {
-        await mongoose.connect("mongodb://127.0.0.1/cleanblog-test-db", {
-            serverSelectionTimeoutMS: 5000,
-        });
-        console.log("Veritabanına başarıyla bağlandı");
-    } catch (error) {
-        console.log(`Bir hata oluştu: ${error}`);
-    }
-}
-connectDB();
+
+dbController.connectDB();
 app.set("view engine", "ejs");
 
 // MIDDLEWARES
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride('_method', {
+    methods: [
+        "POST", "GET",
+    ]
+}));
+app.use('/', page_router);
+app.use('/post', post_router);
 
-// ROUTES
-app.get("/", async(req, res) => {
-    const posts = await Post.find({});
-    console.log(posts);
-    res.render("index.ejs", {
-        posts: posts,
-    });
-});
 
-app.get("/about", (req, res) => {
-    res.render("about.ejs");
-});
-
-app.get("/add_post", (req, res) => {
-    res.render("add_post.ejs");
-});
-
-app.get("/post", (req, res) => {
-    res.render("post.ejs");
-});
-app.get("/post/:id", async(req, res) => {
-    const post = await Post.findById(req.params.id);
-    res.render("post.ejs", {
-        post: post,
-    });
-});
-
-app.post("/posts", async(req, res) => {
-    await Post.create(req.body);
-    res.redirect("/");
-});
+//LISTEN
 app.listen(port, "localhost", () => {
     console.log(`Port ${port} dinleniyor...`);
 });
