@@ -25,6 +25,6 @@ app.use('/post', post_router);
 
 
 //LISTEN
-app.listen(port, "localhost", () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Port ${port} dinleniyor...`);
 });
