@@ -5,7 +5,7 @@ const page_router = require("./routers/page_router");
 const post_router = require("./routers/post_router");
 //CONSTANTS
 const app = express();
-const port = process.env.port || 5000;
+const port = process.env.port || 10000;
 
 
 dbController.connectDB();
