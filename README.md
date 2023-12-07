@@ -26,7 +26,7 @@ Tüm gerekli paketleri yükledikten ve MongoDB bağlantısını sağladıktan so
 npm start
 ```
 
-Uygulamanın bitmiş halini [buradan](https://pcat-app-risy.onrender.com/) ulaşabilirsiniz.
+Uygulamanın bitmiş halini [buradan](https://clean-blog-app-pxeg.onrender.com) ulaşabilirsiniz.
 
 ### Kullanım
 Uygulama, temel yazı paylaşım özelliklerini içerir. Ana sayfada yazıları görüntüleyebilir, yeni yazı ekleyebilir, mevcut yazıları güncelleyebilir ve silebilirsiniz.
